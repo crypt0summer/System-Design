@@ -10,13 +10,13 @@
 ### 1. Architecture Main Theories
 #### 1-1 Basic Theories
 - Scalability: Horizontal vs. vertical scaling.
+- Load balancing
 - CAP Theorem: Consistency, Availability, and Partition Tolerance.
   - Consistency: Patterns
   - Availability: Failover, redundancy, and load balancing.
 - Caching
   - Client, CDN, WebServer, DB, Application
   - Update Cach
-- Load balancing
 - VS Reverse Proxy
 - DB(RDBMS)
   - Database replication
