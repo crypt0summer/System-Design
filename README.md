@@ -5,10 +5,9 @@
 > Learn how to design large-scale systems.  
 > Learn production-quality, scalable software architecture
 
-
 ## Index
 ### 1. Architecture Main Theories
-#### 1-1 Basic Theories
+#### 1-1 [Basic Theories for scalability](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/Scalability.md)
 - Scalability: Horizontal vs. vertical scaling.
 - Load balancing
 - CAP Theorem: Consistency, Availability, and Partition Tolerance.
