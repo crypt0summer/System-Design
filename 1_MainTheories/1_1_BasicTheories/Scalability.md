@@ -4,6 +4,7 @@
 
 ## 1. From Vertical Scaling to Horizontal scaling
 ### Vertical scaling
+increasing the resources (such as CPU, memory, or storage) of a single machine to improve its performance or handle higher workloads.  
 Pro: Easy.  
 Con: 
 - There are limits(ceiling) to computing power, size of SSD and so on
@@ -13,12 +14,11 @@ Con:
     - medium: USD 0.0336 per Hour, 2 Core, 4GiB Memory
 
 ### Horizontal scaling
-There will be ceiling one day,
-use cheaper and slower machines instead.  
+Adding more servers to a system to distribute the workload, using cheaper and slower machines instead.  
 Horizontal scaling leads to load balancing
 
 ## 2. Load balancing (DNS setup)
-Distribute or balance backend servers 
+A load balancer is a network device or software that evenly distributes incoming network traffic across multiple servers or resources to optimize performance and ensure high availability.
 only Load balancer has a public address as a DNS
 and servers behind gets private adress
 
@@ -54,7 +54,7 @@ Failover:
 Provides high availability by automatically rerouting traffic in case of server failure.
   
 ## 3. CDN
-
+Content Delivery Networks (CDNs) are distributed networks of servers located geographically closer to end users, designed to deliver web content efficiently by caching and serving it from nearby locations
 
 ## 4. Caching
 OS, Browser, DNS caches ip and data to prevent from looking up everytime   
@@ -70,42 +70,56 @@ RAID1 -> 2 hard, mirror. simultaniously
 
 
 ## 5. DNS
-(Includes TCP/IP, IP address)
+a decentralized naming system that translates human-readable domain names into IP addresses
+-  TCP : TCP (Transmission Control Protocol) is a communication protocol that ensures reliable, connection-oriented transmission of data by dividing it into smaller packets, numbering them, and reassembling them at the receiving end.
 
 
-## 6. HTTP and REST
+## 6. Communication Protocols
+- HTTP and REST
+  + General-purpose protocol for web communication. 
+  + JSON parsing can be slower compared to Protobuf.
+  + REST (Representational State Transfer) is an approach to designing web services that uses standard HTTP methods and URLs to facilitate communication between clients and servers.
+- GraphQL
+  + Designed to allow clients to request only the data they need. 
+  + Highly flexible
+- gRPC
+  + Focuses on performance and efficiency for service-to-service communication, often within microservices architectures. 
+  + Uses Protobuf
+  + Generally faster and more efficient due to binary serialization and HTTP/2.
+- WebSockets
+ + WebSockets is a communication protocol that provides full-duplex, real-time, and bidirectional communication between a client and a server over a single, long-lived connection.WebSockets can be used in applications such as chat systems or real-time collaboration tools, where instant and continuous data exchange between clients and servers is required.
 
-## 7. GraphQL 
+## 7. SQL(RDBMS) VS NoSQL
+- SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases, 
+  + ACID (Atomicity, Consistency, Isolation, Durability) compliance: is a set of properties that ensure reliability and integrity
+- NoSQL 
+  + provide flexible, schema-less data models and horizontal scalability, making them suitable for handling large volumes of unstructured or semi-structured data.
 
-## 8. gRPC and WebSockets
-
-## 9. SQL(RDBMS) VS NOSQL
-
-## 10. Sharding (NOSQL) 
+## 8. Sharding (NOSQL) 
 Scaling DB horizontally
+a technique in database management where data is horizontally divided and distributed across multiple servers or nodes to improve performance, scalability, and load balancing.  
 if there is no foreign key constraints, that means break up DB with diffrent machines horizontally.  
 Shard key -> where to put what  
 
-
-
-## 11. Replication
+## 9. DB Replication, Database partitioning(Federation)
 Easier ver of sharding
 - Replication : 
   + Leader- follower app : Leader(R,W), Follower is a copy version,read only
   + Leader - Leader app : Both can R,W . complex
+Replication is the process of creating and maintaining identical copies of data across multiple servers or nodes, providing redundancy, fault tolerance, and improved data availability in distributed systems.
 
-
-## 12. CAP theorem:
+## 10. CAP theorem:
 Data consistency vs Contraint consistency
+consistency, availability, and partition tolerance, and therefore, trade-offs must be made between these three properties.
 - CAP Theory (because of Replication design) : Can pick only two
   + Consistency
   + Availability
-  + Partition(Network)
+  + Partition Tolerance(Network)
   C is a MUST
+  Availability: Failover, redundancy, and load balancing.
   AC : PAC
   Latencty+C = ELC
 
 ## TODO
 TTL
 time to live (hour~day)
-I you are a power user of server 1 , <-?
