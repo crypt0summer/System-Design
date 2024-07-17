@@ -8,35 +8,20 @@
 ## Index
 ### 1. Architecture Main Theories
 #### 1-1 [Basic Theories for scalability](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/Scalability.md)
-- Scalability: Horizontal vs. vertical scaling.
-- Load balancing
-- CAP Theorem: Consistency, Availability, and Partition Tolerance.
-  - Consistency: Patterns
-  - Availability: Failover, redundancy, and load balancing.
-- Caching
-  - Client, CDN, WebServer, DB, Application
-  - Update Cach
-- VS Reverse Proxy
-- DB(RDBMS)
-  - Database replication
-  - Database partitioning(Federation)
-  - Sharding
-  - Denormalization
-- NoSQL
-- DNS 
-- CDN
-  - Pull
-  - Push
-- Application Layer
-  - Microservices: Advantages, challenges, communication (REST, gRPC).
-  - Monolithic: When to use, benefits, and drawbacks.
-- HTTP, REST
+- 0. Why Scalability?
+- 1. Vertical to Horizontal
+- 2. Load Balancing and Proxies
+- 3. Caching
+- 4. Networking
+- 5. Communication Protocols(APIs)
+- 6. Storage
 
 
 #### 1-2 High-level Trade-offs
 - Performance vs scalability
 - Latency vs throughput
 - Availability vs consistency
+
 
 ### 2. Case Studies
 Scalability, API, Tech Stack, Security, Handling Transactions, High Availability and Disaster Recovery.
