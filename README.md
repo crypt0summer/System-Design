@@ -7,7 +7,7 @@
 
 ## Index
 ### 1. Architecture Main Theories
-#### 1-1 [Basic Theories for scalability](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/Scalability.md)
+#### 1-1 [Basic Theories for scalability](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/0_Scalability.md)
 - 0. Why Scalability?
 - 1. Vertical to Horizontal
 - 2. Load Balancing and Proxies
