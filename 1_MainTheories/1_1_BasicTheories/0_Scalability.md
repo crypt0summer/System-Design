@@ -12,10 +12,11 @@ Who is responsible for security and caching?
 
 ## 3. [Caching](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/3_Caching.md)
 Let's talk more about caching. Do we really have to look up some regularly accessed data every time?
+1, it burdens the server and 2, it gives slower response to the user.
 How about images and videos? How can we provide those quickly? (spoiler alert: CDN)
 
 ## 4. [Networking](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/4_Networking.md)
-Every component (servers, load balancers, databases...) needs to communicate. But how?
+Every distributed component (servers, load balancers, databases...) needs to communicate. But how?
 
 ## 5. [Communication Protocols (APIs)](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/5_Communication_Protocols.md)
 In real life, there are some grammars to communicate.
@@ -25,3 +26,5 @@ If there are rules for sending messages, parsing them will be much easier and fa
 The maximum connection number for [Postgres is 100](https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS).
 But MongoDB can [connect up to 128,000 per node.](https://www.mongodb.com/docs/manual/reference/limits/#mongodb-atlas-connection-limits-and-cluster-tier)
 Of course each DB has different pros and cons, but NoSQL outperforms RDBMS in case of scalability.  
+Do you think comparing one database to another is not fair in terms of scalability?
+Let's dig into the keys and structure of each database
