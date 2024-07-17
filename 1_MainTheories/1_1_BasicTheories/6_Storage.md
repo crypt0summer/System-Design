@@ -1,15 +1,39 @@
 
-## 6. Storage
-### 6-1. SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases, 
+# 6. Storage
+## 6-1. SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases, 
   + ACID (Atomicity, Consistency, Isolation, Durability) compliance: is a set of properties that ensure reliability and integrity
-### 6-2. NoSQL 
+  + replication
+    - Master - Master replication   
+    The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+    - Master - Slave replication  
+    Both masters serve reads and writes and coordinate with each other on writes. If either master goes down, the system can continue to operate with both reads and writes.
+    - Disadvantages  
+    There is a potential for loss of data if the master fails before any newly written data can be replicated to other nodes.
+    Writes are replayed to the read replicas. If there are a lot of writes, the read replicas can get bogged down with replaying writes and can't do as many reads.
+    The more read slaves, the more you have to replicate, which leads to greater replication lag.
+
+## 6-2. NoSQL 
   + provide flexible, schema-less data models and horizontal scalability, making them suitable for handling large volumes of unstructured or semi-structured data.
 
-### 6-3. Sharding (NOSQL) 
-Scaling DB horizontally
+## 6-3. Sharding (NOSQL) 
+Scaling DB horizontally  
 a technique in database management where data is horizontally divided and distributed across multiple servers or nodes to improve performance, scalability, and load balancing.  
 if there is no foreign key constraints, that means break up DB with diffrent machines horizontally.  
 Shard key -> where to put what  
+
+Sharding distributes data across different databases such that each database can only manage a subset of the data. Taking a users database as an example, as the number of users increases, more shards are added to the cluster.   
+
+Similar to the advantages of federation, sharding results in less read and write traffic, less replication, and more cache hits. Index size is also reduced, which generally improves performance with faster queries. If one shard goes down, the other shards are still operational, although you'll want to add some form of replication to avoid data loss. Like federation, there is no single central master serializing writes, allowing you to write in parallel with increased throughput.   
+
+Common ways to shard a table of users is either through the user's last name initial or the user's geographic location.  
+
+Disadvantage(s): sharding  
+You'll need to update your application logic to work with shards, which could result in complex SQL queries.   
+Data distribution can become lopsided in a shard. For example, a set of power users on a shard could result in increased load to that shard compared to others.  
+Rebalancing adds additional complexity. A sharding function based on consistent hashing can reduce the amount of transferred data.  
+Joining data from multiple shards is more complex.  
+Sharding adds more hardware and additional complexity.  
+
 
 ### 6-4. DB Replication, Database partitioning(Federation)
 Easier ver of sharding
