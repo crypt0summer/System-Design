@@ -6,7 +6,7 @@ Content Delivery Networks (CDNs) are distributed networks of servers located geo
 
 ### 3-2. Caching
 Caching improves page load times and can reduce the load on your servers and databases.
-OS, Browser, DNS caches ip and data to prevent from looking up everytime   
+Client OS, Browser, CNS, WebServer, DB, Application can be cached to prevent from looking up everytime   
 Problem:  
 When the program changes, cache can cause confusion because it shows the old information
 Session can break caching. Session is a serialized text file. If RR send you to other server, the server don't know you're logged in.  
