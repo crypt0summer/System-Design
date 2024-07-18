@@ -4,10 +4,11 @@ scaling up resources (such as CPU, memory, or storage) on more expensive hardwar
 Pro: Easy.  
 Con:  
 - There are limitations(ceiling) to improving computing power, size of SSD, computing power...
-- Cost more
+- Costs more
   + Example: AWS t4g container
     - 2xlarge: USD 0.2688 per Hour, 8 Core , 32GiB Memmory
     - medium: USD 0.0336 per Hour, 2 Core, 4GiB Memory
+    - Regarding number of cores and size of the memory, highier computing is twice expensive than the lower model.
 
 ## Horizontal scaling
 Adding more servers to a system to distribute the workload, using cheaper and slower machines instead.  
