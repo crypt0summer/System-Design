@@ -13,7 +13,7 @@ Who is responsible for security and caching?
 ## 3. [Caching](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/3_Caching.md)
 Let's talk more about caching. Do we really have to look up some regularly accessed data every time?   
 1, it burdens the server and 2, it gives slower response to the user.
-How about images and videos? How can we provide those quickly? (spoiler alert: CDN)
+How about images and videos? How can we provide those quickly? 
 
 ## 4. [Networking](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_1_BasicTheories/4_Networking.md)
 Every distributed component (servers, load balancers, databases...) needs to communicate. But how?
