@@ -1,4 +1,6 @@
 # 1. From Vertical Scaling to Horizontal scaling
+![screen](https://github.com/user-attachments/assets/d53e22c9-eeb0-4caf-8ac5-2f67c2b896fa)
+
 ## Vertical scaling
 scaling up resources (such as CPU, memory, or storage) on more expensive hardware to improve its performance or handle higher workloads. 
 Pro: Easy.  
