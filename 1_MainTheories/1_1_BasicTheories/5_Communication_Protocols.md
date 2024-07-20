@@ -1,9 +1,15 @@
 
 # 5. Communication Protocols (APIs)
+Lv 7 in OSI 7 layer Model : HTTP, Websocket, GraphQL, gRPC
 ## 5-1. HTTP and REST
+### HTTP
+HTTP is generally designed to be simple and human-readable, even with the added complexity introduced in HTTP/2 by encapsulating HTTP messages into frames.    
+A connection is controlled at the transport layer, and therefore fundamentally out of scope for HTTP. HTTP doesn't require the underlying transport protocol to be connection-based; it only requires it to be reliable, or not lose messages (at minimum, presenting an error in such cases). Among the two most common transport protocols on the Internet, TCP is reliable and UDP isn't. HTTP therefore relies on the TCP standard, which is connection-based.   
+
   + General-purpose protocol for web communication. 
   + JSON parsing can be slower compared to Protobuf.
   + REST (Representational State Transfer) is an approach to designing web services that uses standard HTTP methods and URLs to facilitate communication between clients and servers.
+
 ### REST
 - Identify resources (URI in HTTP) - use the same URI regardless of any operation.
 - Change with representations (Verbs in HTTP) - use verbs, headers, and body.
@@ -19,3 +25,5 @@
   + Generally faster and more efficient due to binary serialization and HTTP/2.
 ## 5-4. WebSockets
  + WebSockets is a communication protocol that provides full-duplex, real-time, and bidirectional communication between a client and a server over a single, long-lived connection.WebSockets can be used in applications such as chat systems or real-time collaboration tools, where instant and continuous data exchange between clients and servers is required.
+
+
