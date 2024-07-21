@@ -1,35 +1,36 @@
 
 # 6. Storage
-## 6-1. SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases, 
-  + ACID (Atomicity, Consistency, Isolation, Durability) compliance: is a set of properties that ensure reliability and integrity
-  + replication
-    - Master - Master replication   
-    The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
-    - Master - Slave replication  
-    Both masters serve reads and writes and coordinate with each other on writes. If either master goes down, the system can continue to operate with both reads and writes.
-    - Disadvantages  
-    There is a potential for loss of data if the master fails before any newly written data can be replicated to other nodes.
-    Writes are replayed to the read replicas. If there are a lot of writes, the read replicas can get bogged down with replaying writes and can't do as many reads.
-    The more read slaves, the more you have to replicate, which leads to greater replication lag.
+
+DB
+-SQL vs NoSQL
+-scalability - horizontal sharding, replication, Federation and..?
+
+
+
+## 6-1. SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases
+- ACID (Atomicity, Consistency, Isolation, Durability) compliance 
+  is a set of properties that ensure reliability and integrity
+    + Atomicity : all or nothing. If transaction fails, everything is rollbacked.
+    + Consistency : Preserving DB invariants
+    + Isolation: Concurrent transactions are isolated from each other
+        - serializable : give strongest consistency, but slow down the process
+    + Durability : Once a transaction is committed, its permanent
+
+ 
+  
 
 ## 6-2. NoSQL 
   + provide flexible, schema-less data models and horizontal scalability, making them suitable for handling large volumes of unstructured or semi-structured data.
 
-## 6-3. Sharding (NOSQL) 
-Also known as sharding, horizontal data partitioning involves dividing a database table into multiple partitions or shards, with each partition containing a subset of rows. Each shard is typically assigned to a different database server, which allows for parallel processing and faster query execution times.   
+## 6-3. (Horizontal) Sharding (NOSQL) 
+Also known as sharding, horizontal data partitioning involves dividing a database table into multiple partitions or shards, with each partition containing a subset of rows.   
+Each shard is typically assigned to a different database server, which allows for parallel processing and faster query execution times.   
 
 For example, consider a social media platform that stores user data in a database table. The platform might partition the user table horizontally based on the geographic location of the users, so that users in the United States are stored in one shard, users in Europe are stored in another shard, and so on. This way, when a user logs in and their data needs to be accessed, the query can be directed to the appropriate shard, minimizing the amount of data that needs to be scanned.  
 
-The key problem with this approach is that if the value whose range is used for partitioning isn’t chosen carefully, then the partitioning scheme will lead to unbalanced servers. For instance, partitioning users based on their geographic location assumes an even distribution of users across different regions, which may not be valid due to the presence of densely or sparsely populated areas.  
+The key problem with this approach is that if the value whose range is used for partitioning isn’t chosen carefully, then the partitioning scheme will lead to unbalanced servers.  
+For instance, partitioning users based on their geographic location assumes an even distribution of users across different regions, which may not be valid due to the presence of densely or sparsely populated areas.  
 
-
-
-Scaling DB horizontally  
-a technique in database management where data is horizontally divided and distributed across multiple servers or nodes to improve performance, scalability, and load balancing.  
-if there is no foreign key constraints, that means break up DB with diffrent machines horizontally.  
-Shard key -> where to put what  
-
-Sharding distributes data across different databases such that each database can only manage a subset of the data. Taking a users database as an example, as the number of users increases, more shards are added to the cluster.   
 
 Similar to the advantages of federation, sharding results in less read and write traffic, less replication, and more cache hits. Index size is also reduced, which generally improves performance with faster queries. If one shard goes down, the other shards are still operational, although you'll want to add some form of replication to avoid data loss. Like federation, there is no single central master serializing writes, allowing you to write in parallel with increased throughput.   
 
@@ -48,6 +49,13 @@ Easier ver of sharding
 - Replication : 
   + Leader- follower app : Leader(R,W), Follower is a copy version,read only
   + Leader - Leader app : Both can R,W . complex
+    The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
+    - Master - Slave replication  
+    Both masters serve reads and writes and coordinate with each other on writes. If either master goes down, the system can continue to operate with both reads and writes.
+    - Disadvantages  
+    There is a potential for loss of data if the master fails before any newly written data can be replicated to other nodes.
+    Writes are replayed to the read replicas. If there are a lot of writes, the read replicas can get bogged down with replaying writes and can't do as many reads.
+    The more read slaves, the more you have to replicate, which leads to greater replication lag.
 Replication is the process of creating and maintaining identical copies of data across multiple servers or nodes, providing redundancy, fault tolerance, and improved data availability in distributed systems.
 
 ### 6-5. CAP theorem:
