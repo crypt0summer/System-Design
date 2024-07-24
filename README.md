@@ -17,7 +17,7 @@
 6. Storage
 
 
-#### 1-2 High-level Trade-offs
+#### 1-2 [High-level Trade-offs](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_2_High-level_Trade-offs/0_TradeOffs.md)
 - Performance vs scalability
 - Latency vs throughput
 - Availability vs consistency
