@@ -4,7 +4,7 @@ Lv 7 in OSI 7 layer Model : HTTP, Websocket, GraphQL, gRPC
 ## 5-1. HTTP and REST, API
 ### HTTP
 HTTP is generally designed to be simple and human-readable, even with the added complexity introduced in HTTP/2 by encapsulating HTTP messages into frames.    
-A connection is controlled at the transport layer, and therefore fundamentally out of scope for HTTP. HTTP doesn't require the underlying transport protocol to be connection-based; it only requires it to be reliable, or not lose messages (at minimum, presenting an error in such cases). Among the two most common transport protocols on the Internet, TCP is reliable and UDP isn't. HTTP therefore relies on the TCP standard, which is connection-based.   
+HTTP therefore relies on the TCP standard, which is connection-based.   
 
   + General-purpose protocol for web communication. 
   + JSON parsing can be slower compared to Protobuf.
@@ -21,7 +21,7 @@ REST is a set of architectural constraints.
 
 ### API (Application Programming Interface)
 contract that defines the relationship between two systems in order to exchange information
-API contains these methods.
+API contains these methods, and the endpoint contains the ``resource`` you manipulate.
 ![img](https://github.com/user-attachments/assets/e467658b-3b20-41f9-b54c-5743a3f909d7)   
 POST is an important method because it is used to trigger data handling process. Like making a bank account.
 On the other hand, it is not ``Idempotent`` and it should be.
@@ -48,6 +48,7 @@ On the other hand, it is not ``Idempotent`` and it should be.
   + Focuses on performance and efficiency for service-to-service communication, often within microservices architectures. 
   + Uses Protobuf
   + Generally faster and more efficient due to binary serialization and HTTP/2.
+  + Request is the operation request style
 ## 5-4. WebSockets
  + WebSockets is a communication protocol that provides full-duplex, real-time, and bidirectional communication between a client and a server over a single, long-lived connection.WebSockets can be used in applications such as chat systems or real-time collaboration tools, where instant and continuous data exchange between clients and servers is required.
 
