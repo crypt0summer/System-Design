@@ -2,6 +2,7 @@
 # 4. Networking
 
 ## 4-1. Lv 4 in OSI 7 layer Model : TCP vs UDP
+A connection is controlled at the transport layer(lv 4), and therefore fundamentally out of scope for HTTP. HTTP doesn't require the underlying transport protocol to be connection-based; it only requires it to be reliable, or not lose messages (at minimum, presenting an error in such cases). Among the two most common transport protocols on the Internet, TCP is reliable and UDP isn't. 
 ![img](https://github.com/user-attachments/assets/140d1e60-313d-408f-bb81-1f84d6a951c3)   
 
 ### TCP
