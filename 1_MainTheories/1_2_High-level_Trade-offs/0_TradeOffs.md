@@ -52,6 +52,7 @@ AP is a good choice if the business needs allow for eventual consistency or when
 
 ### Consistency 
 With multiple copies of the same data, we are faced with options on how to synchronize them so clients have a consistent view of the data. Recall the definition of consistency from the CAP theorem - Every read receives the most recent write or an error.
+
 #### Weak consistency
 - After a write, reads may or may not see it. A best effort approach is taken.
 - This approach is seen in systems such as memcached. Weak consistency works well in real time use cases such as VoIP, video chat, and realtime multiplayer games. For example, if you are on a phone call and lose reception for a few seconds, when you regain connection you do not hear what was spoken during connection loss.
@@ -83,9 +84,3 @@ If the servers are public-facing, the DNS would need to know about the public IP
 - Disadvantages
   + Fail-over adds more hardware and additional complexity.
   + There is a potential for loss of data if the active system fails before any newly written data can be replicated to the passive.
-
-
-## 4. Fault Tolerance vs. Complexity
-
-
-## 5. Flexibility vs. Performance
