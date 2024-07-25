@@ -18,16 +18,16 @@
 
 
 #### 1-2 [High-level Trade-offs](https://github.com/crypt0summer/System-Design/blob/main/1_MainTheories/1_2_High-level_Trade-offs/0_TradeOffs.md)
-- Performance vs scalability
-- Latency vs throughput
-- Availability vs consistency
+0. Performance vs scalability
+1. Latency vs throughput
+3. Availability vs consistency
 
 
 ### 2. Case Studies
 Scalability, API, Tech Stack, Security, Handling Transactions, High Availability and Disaster Recovery.
-- Circle
-- Stripe
-- Paypal
+1. Circle
+2. Stripe
+3. Paypal
 
 ### 3. Into the Specific Technologies
 - DB : Relational(PostgreSQL, MySQL) VS NoSQL (MongoDB, Cassandra)
