@@ -20,6 +20,13 @@ A load balancer is a network device or software that evenly distributes incoming
  - IP Hash: Routes requests based on the client's IP address.
  - Weighted Distribution: Assigns more traffic to servers with higher capacities.
 
+ ### Layer 4 Load balancer vs Layer 7 Load balancer
+- Performance vs. Functionality: Layer 4 load balancers focus on simplicity and performance, whereas Layer 7 load balancers offer more advanced routing and management features.
+  + Layer4: Distributes traffic based on TCP/UDP port numbers and IP addresses.
+  + Layer7: Distributes traffic based on application-level data such as HTTP headers, URLs, cookies, etc. (analyzing the content of the packets)
+- Traffic Handling: Layer 4 handles traffic at the TCP/UDP level, while Layer 7 handles traffic at the HTTP/HTTPS level.
+- Use Cases: Layer 4 is suited for simple traffic distribution, while Layer 7 is ideal for more sophisticated routing and management required by web applications.
+
 ### Health Monitoring:
 Regularly checks the health of servers to ensure they can handle requests.
 Automatically removes unhealthy servers from the pool and reintroduces them once they are back online.
