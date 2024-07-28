@@ -5,8 +5,6 @@ DB
 -SQL vs NoSQL
 -scalability - horizontal sharding, replication, Federation and..?
 
-
-
 ## 6-1. SQL :  SQL (Structured Query Language) is a programming language used for managing and manipulating relational databases
 - ACID (Atomicity, Consistency, Isolation, Durability) compliance 
   is a set of properties that ensure reliability and integrity
@@ -19,44 +17,56 @@ DB
 ## 6-2. NoSQL 
   + provide flexible, schema-less data models and horizontal scalability, making them suitable for handling large volumes of unstructured or semi-structured data.
 
-## 6-3. (Horizontal) Sharding (NOSQL) 
-Also known as sharding, horizontal data partitioning involves dividing a database table into multiple partitions or shards, with each partition containing a subset of rows.   
-Each shard is typically assigned to a different database server, which allows for parallel processing and faster query execution times.   
+## 6-3. (Horizontal) Sharding
+Sharding involves dividing a database into smaller, more manageable pieces called shards. Each shard is an independent database that contains a subset of the data.
 
-For example, consider a social media platform that stores user data in a database table. The platform might partition the user table horizontally based on the geographic location of the users, so that users in the United States are stored in one shard, users in Europe are stored in another shard, and so on. This way, when a user logs in and their data needs to be accessed, the query can be directed to the appropriate shard, minimizing the amount of data that needs to be scanned.  
+### Purpose:
 
-The key problem with this approach is that if the value whose range is used for partitioning isn’t chosen carefully, then the partitioning scheme will lead to unbalanced servers.  
-For instance, partitioning users based on their geographic location assumes an even distribution of users across different regions, which may not be valid due to the presence of densely or sparsely populated areas.  
+- Scalability: By distributing data across multiple servers, sharding allows the database to handle more queries and larger datasets.
+- Performance: Reduces the load on any single database instance by spreading the data and queries.
 
+### How it works:
 
-Similar to the advantages of federation, sharding results in less read and write traffic, less replication, and more cache hits. Index size is also reduced, which generally improves performance with faster queries. If one shard goes down, the other shards are still operational, although you'll want to add some form of replication to avoid data loss. Like federation, there is no single central master serializing writes, allowing you to write in parallel with increased throughput.   
+- Horizontal Partitioning: Each shard holds a unique subset of the data. For example, a customer database could be split by geographical region, with each shard containing customers from a specific region.
+- Shard Key: A specific key (like a user ID or region) determines which shard a particular piece of data belongs to.
 
-Common ways to shard a table of users is either through the user's last name initial or the user's geographic location.  
+### Use cases:
 
-Disadvantage(s): sharding  
-- You'll need to update your application logic to work with shards, which could result in complex SQL queries.   
-- Data distribution can become lopsided in a shard. For example, a set of power users on a shard could result in increased load to that shard compared to others.  
-- Rebalancing adds additional complexity. A sharding function based on consistent hashing can reduce the amount of transferred data.  
-- Joining data from multiple shards is more complex.  
-- Sharding adds more hardware and additional complexity.  
+- Large-scale applications where the dataset is too large for a single database instance.
+- Applications with a high volume of read and write operations.
 
 
-### 6-4. DB Replication, Database partitioning(Federation)
-Easier ver of sharding
-- Replication : 
-  + Leader - follower app : Leader(R,W), Follower is a copy version,read only
-      - The master serves reads and writes, replicating writes to one or more slaves, which serve only reads. Slaves can also replicate to additional slaves in a tree-like fashion. If the master goes offline, the system can continue to operate in read-only mode until a slave is promoted to a master or a new master is provisioned.
-      - The more read slaves, the more you have to replicate, which leads to greater replication lag.
+## 6-4. Replication 
+Replication involves copying data from one database (the primary) to one or more databases (the replicas).
 
-  + Leader - Leader app : Both can R,W . complex
-    - Both masters serve reads and writes and coordinate with each other on writes. If either master goes down, the system can continue to operate with both reads and writes.
-    - Disadvantages  
-    There is a potential for loss of data if the master fails before any newly written data can be replicated to other nodes.
-    Writes are replayed to the read replicas. If there are a lot of writes, the read replicas can get bogged down with replaying writes and can't do as many reads.
+### Purpose:
 
-Replication is the process of creating and maintaining identical copies of data across multiple servers or nodes, providing redundancy, fault tolerance, and improved data availability in distributed systems.
+- Availability: Ensures that the data is always available, even if one database instance fails.
+- Read Scalability: Allows multiple read operations to be distributed across replicas, reducing the load on the primary database.
+- Disaster Recovery: Provides data redundancy and helps in disaster recovery scenarios.
 
-### 6-5. CAP theorem:
+### How it works:
+
+- Master-Slave Replication: The primary (master) database handles all the write operations, and changes are propagated to the secondary (slave) databases which handle read operations.
+- Master-Master Replication: Multiple databases act as both primary and secondary, allowing read and write operations to be distributed across all instances.
+
+### Use cases:
+
+- Applications requiring high availability and minimal downtime.
+- Systems that need to distribute read operations across multiple servers to improve performance.
+
+### Key Differences
+1. Functionality:
+  - Sharding: Distributes different subsets of data across multiple databases.
+  - Replication: Copies the same data across multiple databases.
+2. Objective:
+  - Sharding: Aims to handle larger datasets and higher throughput by splitting the data.
+  - Replication: Aims to increase data availability and read performance through redundancy.
+3. Implementation:
+  - Sharding: Requires careful planning of the shard key and how data is partitioned.
+  - Replication: Involves setting up a primary database and configuring replicas to synchronize data.
+
+## 6-5. CAP theorem:
 Data consistency vs Contraint consistency
 consistency, availability, and partition tolerance, and therefore, trade-offs must be made between these three properties.
 - CAP Theory (because of Replication design) : Can pick only two
