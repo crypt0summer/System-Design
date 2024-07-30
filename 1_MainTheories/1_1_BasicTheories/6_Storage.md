@@ -68,12 +68,36 @@ Replication involves copying data from one database (the primary) to one or more
 
 ## 6-5. CAP theorem:
 Data consistency vs Contraint consistency
+![screen](https://github.com/user-attachments/assets/2ef71534-5ad9-4cff-845e-6981d4db0d99)
+
 consistency, availability, and partition tolerance, and therefore, trade-offs must be made between these three properties.
 - CAP Theory (because of Replication design) : Can pick only two
-  + Consistency
-  + Availability
-  + Partition Tolerance(Network)
-  C is a MUST
-  Availability: Failover, redundancy, and load balancing.
-  AC : PAC
-  Latencty+C = ELC
+  + Consistency - Every read receives the most recent write or an error
+  + Availability - Every request receives a response, without guarantee that it contains the most recent version of the information
+  + Partition Tolerance - The system continues to operate despite arbitrary partitioning due to ``network failures``
+  
+### CP Example - MongoDB
+![screen](https://github.com/user-attachments/assets/6306557b-cd04-4446-8135-296b373a60cb)
+MongoDB is a NoSQL database that stores data in one or more Primary nodes in the form of JSON files. Each Primary node has multiple replica sets that update themselves asynchronously using the operation log file of their respective primary node. The replica set nodes in the system send a heartbeat (ping) to every other node to keep track if other replicas or primary nodes are alive or dead. If no heartbeat is received within 10 seconds, then that node is marked as inaccessible.   
+
+If a Primary node becomes inaccessible, then one of the secondary nodes needs to become the primary node. Till a new primary is elected from amongst the secondary nodes, the system remains unavailable to the user to make any new write query. Therefore, the MongoDB system behaves as a Consistent system and compromises on Availability during a partition.   
+
+### AP Example - Cassandra
+![screen](https://github.com/user-attachments/assets/ea7e864e-d9e7-4c3f-acee-c809b8415f76)
+The Cassandra database is called a highly available database.   
+
+Cassandra is a peer-to-peer system. It consists of multiple nodes in the system. And each node can accept a read or write request from the user. Cassandra maintains multiple replicas of data in separate nodes. This gives it a masterless node architecture where there are multiple points of failure instead of a single point.   
+
+The replication factor determines the number of replicas of data. If the replication factor is 3, then we will replicate the data in three nodes in a clockwise manner.   
+
+CAP_theorem AP with Cassandra
+A situation can occur where a partition occurs and the replica does not get an updated copy of the data. In such a situation the replica nodes will still be available to the user but the data will be inconsistent. However, Cassandra also provides eventual consistency. Meaning, all updates will reach all the replicas eventually. But in the meantime, it allows divergent versions of the same data to exist temporarily. Until we update them to the consistent state.   
+
+Therefore, by allowing nodes to be available throughout and allowing temporarily inconsistent data to existing in the system, Cassandra is an AP database that compromises on consistency.   
+
+
+
+### Conclusion
+1. In a distributed system, it's impossible to achieve all three aspects of the CAP theorem simultaneously. However, partition tolerance (P) is essential in a distributed environment.
+2. AP System: Even if a node is temporarily out of sync due to being turned off and on, let's provide a response for now.
+3. CP System: Let's wait until synchronization is achieved.
