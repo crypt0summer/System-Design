@@ -14,6 +14,17 @@ DB
         - serializable : give strongest consistency, but slow down the process
     + Durability : Once a transaction is committed, its permanent
 
+### Denormalization
+Denormalization attempts to improve read performance at the expense of some write performance. Redundant copies of the data are written in multiple tables to avoid expensive joins. 
+- Pros of Denormalization:
+  + Retrieving data is faster since we do fewer joins
+  + Queries to retrieve can be simpler(and therefore less likely to have bugs), since we need to look at fewer tables.
+- Cons of Denormalization:
+  + Updates and inserts are more expensive.
+  + Denormalization can make update and insert code harder to write.
+  + Data may be inconsistent.
+  + Data redundancy necessitates more storage.
+
 ## 6-2. NoSQL 
   + provide flexible, schema-less data models and horizontal scalability, making them suitable for handling large volumes of unstructured or semi-structured data.
 
